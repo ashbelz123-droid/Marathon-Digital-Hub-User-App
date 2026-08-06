@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Marathon Digital Hub</title>
+
+<link
+rel="manifest"
+href="manifest.json">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+</head>
+
+<body id="splashPage">
+
+<!--=========================================
+ANIMATED NETWORK BACKGROUND
+==========================================-->
+
+<canvas
+id="networkCanvas">
+</canvas>
+
+<!--=========================================
+FLOATING PARTICLES
+==========================================-->
+
+<div id="particles"></div>
+
+<!--=========================================
+SPLASH SCREEN
+==========================================-->
+
+<div class="splashContainer">
+
+    <div class="logoWrapper">
+
+        <div class="logoGlow"></div>
+
+        <img
+        id="appLogo"
+        src="icon-512.png"
+        alt="Marathon Digital Hub">
+
+    </div>
+
+    <h1 class="appTitle">
+
+        Marathon Digital Hub
+
+    </h1>
+
+    <p class="appSubtitle">
+
+        Smart Crypto Mining Platform
+
+    </p>
+
+      <!--=========================================
+    LOADING ANIMATION
+    ==========================================-->
+
+    <div class="loadingSection">
+
+        <div class="loaderRing">
+
+            <div class="loaderCircle"></div>
+
+        </div>
+
+        <p
+        id="loadingText"
+        class="loadingText">
+
+            Initializing Secure Connection...
+
+        </p>
+
+        <div class="progressBar">
+
+            <div
+            id="progressFill"
+            class="progressFill">
+
+            </div>
+
+        </div>
+
+        <p
+        id="connectionStatus"
+        class="connectionStatus">
+
+            Connecting to Marathon Servers...
+
+        </p>
+
+    </div>
+
+    <!--=========================================
+    APP INFORMATION
+    ==========================================-->
+
+    <div class="appInfo">
+
+        <p class="versionText">
+
+            Version 1.0.0
+
+        </p>
+
+        <p class="copyrightText">
+
+            © Marathon Digital Hub
+
+        </p>
+
+    </div>
+
+</div>
+
+  <!--=========================================
+OFFLINE MESSAGE
+==========================================-->
+
+<div
+id="offlineBanner"
+class="offlineBanner hidden">
+
+    <span>
+
+        📶 Waiting for internet connection...
+
+    </span>
+
+</div>
+
+<!--=========================================
+UPDATE MESSAGE
+==========================================-->
+
+<div
+id="updateBanner"
+class="updateBanner hidden">
+
+    <span id="updateText">
+
+        Checking for updates...
+
+    </span>
+
+</div>
+
+<!--=========================================
+APP JAVASCRIPT
+==========================================-->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
