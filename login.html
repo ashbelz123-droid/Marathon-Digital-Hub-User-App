@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Login • Marathon Digital Hub</title>
+
+<link
+rel="manifest"
+href="manifest.json">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+</head>
+
+<body id="loginPage">
+
+<!--=========================================
+ANIMATED NETWORK
+==========================================-->
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<!--=========================================
+LOGIN CONTAINER
+==========================================-->
+
+<div class="authContainer">
+
+    <div class="authLogo">
+
+        <div class="logoGlow"></div>
+
+        <img
+        src="icon-512.png"
+        alt="Marathon Digital Hub">
+
+    </div>
+
+    <h1 class="authTitle">
+
+        Welcome Back
+
+    </h1>
+
+    <p class="authSubtitle">
+
+        Sign in to continue mining with Marathon Digital Hub
+
+    </p>
+
+    <form
+    id="loginForm"
+    autocomplete="off">
+
+        <div class="inputGroup">
+
+            <label>Email Address</label>
+
+            <input
+            type="email"
+            id="loginEmail"
+            placeholder="Enter your email"
+            required>
+
+        </div>
+
+        <div class="inputGroup">
+
+            <label>Password</label>
+
+            <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+            required>
+
+        </div>
+
+             <!--=========================================
+        PASSWORD OPTIONS
+        ==========================================-->
+
+        <div class="passwordOptions">
+
+            <label class="rememberMe">
+
+                <input
+                type="checkbox"
+                id="rememberMe">
+
+                <span>
+
+                    Remember Me
+
+                </span>
+
+            </label>
+
+            <button
+            type="button"
+            id="togglePassword"
+            class="textBtn">
+
+                Show
+
+            </button>
+
+        </div>
+
+        <!--=========================================
+        LOGIN BUTTON
+        ==========================================-->
+
+        <button
+        type="submit"
+        id="loginBtn"
+        class="primaryBtn fullWidth">
+
+            Sign In
+
+        </button>
+
+        <!--=========================================
+        LOADING
+        ==========================================-->
+
+        <div
+        id="loginLoading"
+        class="authLoading hidden">
+
+            <div class="loaderCircleSmall"></div>
+
+            <span>
+
+                Signing you in...
+
+            </span>
+
+        </div>
+
+    </form>
+
+    <button
+    type="button"
+    id="forgotPasswordBtn"
+    class="linkBtn">
+
+        Forgot Password?
+
+    </button>
+
+      <!--=========================================
+    CREATE ACCOUNT
+    ==========================================-->
+
+    <div class="authFooter">
+
+        <p>
+
+            Don't have an account?
+
+        </p>
+
+        <a
+        href="register.html"
+        class="authLink">
+
+            Create Account
+
+        </a>
+
+    </div>
+
+    <!--=========================================
+    APP INFO
+    ==========================================-->
+
+    <div class="appInfo">
+
+        <p class="versionText">
+
+            Marathon Digital Hub v1.0.0
+
+        </p>
+
+        <p class="copyrightText">
+
+            © Marathon Digital Hub. All Rights Reserved.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!--=========================================
+OFFLINE BANNER
+==========================================-->
+
+<div
+id="offlineBanner"
+class="offlineBanner hidden">
+
+    <span>
+
+        📶 Waiting for internet connection...
+
+    </span>
+
+</div>
+
+<!--=========================================
+TOAST MESSAGE
+==========================================-->
+
+<div
+id="toast"
+class="toast hidden">
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
