@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Wallet | Marathon Digital Hub</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+</head>
+
+<body id="walletPage">
+
+<!--=========================================
+NETWORK BACKGROUND
+==========================================-->
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<div class="pageContainer">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="pageHeader">
+
+<div>
+
+<h1>
+
+Wallet
+
+</h1>
+
+<p>
+
+Manage Your Marathon Wallet
+
+</p>
+
+</div>
+
+<button
+class="headerButton"
+onclick="location.href='notifications.html'">
+
+<span class="material-symbols-rounded">
+
+notifications
+
+</span>
+
+</button>
+
+</header>
+
+<!--=========================================
+MAIN WALLET CARD
+==========================================-->
+
+<section class="glass walletHero">
+
+<p>
+
+Available Balance
+
+</p>
+
+<h1 id="walletBalance">
+
+UGX 0
+
+</h1>
+
+<div class="walletStatus">
+
+🟢 Secure Wallet
+
+</div>
+
+</section>
+
+<!--=========================================
+QUICK WALLET STATS
+==========================================-->
+
+<section class="statsGrid">
+
+<div class="glass statCard">
+
+<span class="material-symbols-rounded">
+
+south_west
+
+</span>
+
+<p>
+
+Total Deposits
+
+</p>
+
+<h3 id="walletDeposits">
+
+UGX 0
+
+</h3>
+
+</div>
+
+<div class="glass statCard">
+
+<span class="material-symbols-rounded">
+
+north_east
+
+</span>
+
+<p>
+
+Total Withdrawals
+
+</p>
+
+<h3 id="walletWithdrawals">
+
+UGX 0
+
+</h3>
+
+</div>
+
+<div class="glass statCard">
+
+<span class="material-symbols-rounded">
+
+monitoring
+
+</span>
+
+<p>
+
+Mining Earnings
+
+</p>
+
+<h3 id="walletMining">
+
+UGX 0
+
+</h3>
+
+</div>
+
+<div class="glass statCard">
+
+<span class="material-symbols-rounded">
+
+account_balance
+
+</span>
+
+<p>
+
+Net Balance
+
+</p>
+
+<h3 id="walletNet">
+
+UGX 0
+
+</h3>
+
+</div>
+
+</section>
+
+  <!--=========================================
+RECENT WALLET ACTIVITY
+==========================================-->
+
+<section class="glass historyCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Recent Wallet Activity
+
+</h2>
+
+<span id="walletHistoryCount">
+
+0 Records
+
+</span>
+
+</div>
+
+<div
+id="walletHistory"
+class="historyList">
+
+<div class="loadingCard">
+
+Loading wallet activity...
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+WALLET SUMMARY
+==========================================-->
+
+<section class="glass walletSummary">
+
+<div class="summaryRow">
+
+<span>
+
+Today's Earnings
+
+</span>
+
+<b id="todayWalletIncome">
+
+UGX 0
+
+</b>
+
+</div>
+
+<div class="summaryRow">
+
+<span>
+
+Pending Deposits
+
+</span>
+
+<b id="pendingDeposits">
+
+0
+
+</b>
+
+</div>
+
+<div class="summaryRow">
+
+<span>
+
+Pending Withdrawals
+
+</span>
+
+<b id="pendingWithdrawals">
+
+0
+
+</b>
+
+</div>
+
+<div class="summaryRow">
+
+<span>
+
+Active Mining Machines
+
+</span>
+
+<b id="walletActiveMachines">
+
+0
+
+</b>
+
+</div>
+
+</section>
+
+<!--=========================================
+RECENT TRANSACTIONS
+==========================================-->
+
+<section class="glass transactionCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Latest Transactions
+
+</h2>
+
+</div>
+
+<div
+id="walletTransactions"
+class="transactionList">
+
+<!-- Loaded by app.js -->
+
+<!--
+
+<div class="transactionItem">
+
+<div class="transactionLeft">
+
+<span class="material-symbols-rounded">
+
+payments
+
+</span>
+
+<div>
+
+<h4>
+
+Mining Reward
+
+</h4>
+
+<p>
+
+Today • 10:30 AM
+
+</p>
+
+</div>
+
+</div>
+
+<div class="transactionRight positive">
+
++UGX 25,000
+
+</div>
+
+</div>
+
+-->
+
+</div>
+
+</section>
+
+<!--=========================================
+MARA AI WALLET
+==========================================-->
+
+<section
+class="maraCard"
+onclick="location.href='mara-ai.html'">
+
+<div class="maraLeft">
+
+<div class="maraIcon">
+
+<span class="material-symbols-rounded">
+
+smart_toy
+
+</span>
+
+</div>
+
+<div>
+
+<h3>
+
+Mara AI Wallet Advisor
+
+</h3>
+
+<p>
+
+Get smart insights about your wallet, earnings and withdrawals.
+
+</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+
+arrow_forward_ios
+
+</span>
+
+  </section>
+
+  <!--=========================================
+BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html" class="navItem">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>Home</small>
+
+</a>
+
+<a href="machines.html" class="navItem">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>Machines</small>
+
+</a>
+
+<a href="mara-ai.html" class="navItem aiButton">
+
+<div class="aiRing"></div>
+
+<span class="material-symbols-rounded">
+
+smart_toy
+
+</span>
+
+<small>Mara AI</small>
+
+</a>
+
+<a href="income.html" class="navItem">
+
+<span class="material-symbols-rounded">
+
+monitoring
+
+</span>
+
+<small>Income</small>
+
+</a>
+
+<a href="profile.html" class="navItem active">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>Wallet</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<!--=========================================
+JAVASCRIPT
+==========================================-->
+
+<script src="assets/js/mining-engine.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
