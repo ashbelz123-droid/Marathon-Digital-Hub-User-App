@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Settings | Marathon Digital Hub</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="settings.css">
+
+</head>
+
+<body>
+
+<!--=========================================
+PREMIUM BACKGROUND
+==========================================-->
+
+<div class="backgroundGlow"></div>
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<div class="page">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="topHeader glass">
+
+<a
+href="profile.html"
+class="backButton">
+
+<span class="material-symbols-rounded">
+
+arrow_back_ios_new
+
+</span>
+
+</a>
+
+<div class="headerTitle">
+
+<h2>
+
+Settings
+
+</h2>
+
+<p>
+
+Manage your account securely
+
+</p>
+
+</div>
+
+</header>
+
+<!--=========================================
+ACCOUNT SECURITY
+==========================================-->
+
+<section class="glass settingsCard">
+
+<h3>
+
+🔐 Account Security
+
+</h3>
+
+<a href="#" id="changePassword" class="settingRow">
+
+<div>
+
+<span class="material-symbols-rounded">
+
+lock
+
+</span>
+
+Change Password
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="#" id="resetPassword" class="settingRow">
+
+<div>
+
+<span class="material-symbols-rounded">
+
+password
+
+</span>
+
+Reset Password
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="#" id="changeEmail" class="settingRow">
+
+<div>
+
+<span class="material-symbols-rounded">
+
+mail
+
+</span>
+
+Change Email
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="#" id="changePhone" class="settingRow">
+
+<div>
+
+<span class="material-symbols-rounded">
+
+call
+
+</span>
+
+Change Phone Number
+
+</div>
+
+<span>›</span>
+
+</a>
+
+</section>
+
+<!--=========================================
+PREFERENCES
+==========================================-->
+
+<section class="glass settingsCard">
+
+<h3>
+
+⚙ Preferences
+
+</h3>
+
+<a href="#" id="notificationsSettings" class="settingRow">
+
+<div>
+
+<span class="material-symbols-rounded">
+
+notifications
+
+</span>
+
+Notification Preferences
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="#" id="themeSettings" class="settingRow">
+
+<div>
+
+<span class="material-symbols-rounded">
+
+dark_mode
+
+</span>
+
+Theme (Coming Soon)
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="#" id="languageSettings" class="settingRow">
+
+<div>
+
+<span class="material-symbols-rounded">
+
+language
+
+</span>
+
+Language (Coming Soon)
+
+</div>
+
+<span>›</span>
+
+</a>
+
+</section>
+
+ <!--=========================================
+MARA AI
+==========================================-->
+
+<section
+class="glass settingsCard"
+onclick="location.href='mara-ai.html?topic=settings'">
+
+<div class="settingRow noArrow">
+
+<div class="settingLeft">
+
+<div class="settingIcon">
+
+🤖
+
+</div>
+
+<div>
+
+<h4>
+
+Ask Mara AI
+
+</h4>
+
+<p>
+
+Get help with your account, security and settings.
+
+</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+
+arrow_forward_ios
+
+</span>
+
+</div>
+
+</section>
+
+<!--=========================================
+HELP & INFORMATION
+==========================================-->
+
+<section class="glass settingsCard">
+
+<h3>
+
+📚 Help & Information
+
+</h3>
+
+<a href="about.html" class="settingRow">
+
+<div class="settingLeft">
+
+<span class="material-symbols-rounded">
+
+apartment
+
+</span>
+
+About Marathon Digital Hub
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="faq.html" class="settingRow">
+
+<div class="settingLeft">
+
+<span class="material-symbols-rounded">
+
+help
+
+</span>
+
+Frequently Asked Questions
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="terms.html" class="settingRow">
+
+<div class="settingLeft">
+
+<span class="material-symbols-rounded">
+
+gavel
+
+</span>
+
+Terms & Conditions
+
+</div>
+
+<span>›</span>
+
+</a>
+
+<a href="privacy.html" class="settingRow">
+
+<div class="settingLeft">
+
+<span class="material-symbols-rounded">
+
+shield_lock
+
+</span>
+
+Privacy Policy
+
+</div>
+
+<span>›</span>
+
+</a>
+
+</section>
+
+<!--=========================================
+APP INFORMATION
+==========================================-->
+
+<section class="glass settingsCard">
+
+<h3>
+
+📱 App Information
+
+</h3>
+
+<div class="infoRow">
+
+<span>
+
+Application
+
+</span>
+
+<strong>
+
+Marathon Digital Hub
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+Version
+
+</span>
+
+<strong>
+
+1.0.0
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+Platform
+
+</span>
+
+<strong>
+
+Web Application
+
+</strong>
+
+</div>
+
+</section>
+
+<!--=========================================
+LOGOUT
+==========================================-->
+
+<section class="glass settingsCard dangerCard">
+
+<button
+id="logoutBtn"
+class="logoutButton">
+
+<span class="material-symbols-rounded">
+
+logout
+
+</span>
+
+Logout
+
+</button>
+
+  </section>
+
+  <!--=========================================
+LOADING SCREEN
+==========================================-->
+
+<div id="loadingScreen" class="loadingScreen">
+
+<div class="loader"></div>
+
+<p>
+
+Loading Settings...
+
+</p>
+
+</div>
+
+<!--=========================================
+BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>
+
+Home
+
+</small>
+
+</a>
+
+<a href="machines.html">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>
+
+Machines
+
+</small>
+
+</a>
+
+<a href="deposit.html">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>
+
+Deposit
+
+</small>
+
+</a>
+
+<a href="income.html">
+
+<span class="material-symbols-rounded">
+
+bar_chart
+
+</span>
+
+<small>
+
+Income
+
+</small>
+
+</a>
+
+<a href="profile.html" class="active">
+
+<span class="material-symbols-rounded">
+
+person
+
+</span>
+
+<small>
+
+Profile
+
+</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<!--=========================================
+JAVASCRIPTS
+==========================================-->
+
+<script src="assets/js/network-background.js"></script>
+
+<script src="assets/js/mining-engine.js"></script>
+
+<script src="security.js"></script>
+
+<script src="settings.js"></script>
+
+</body>
+
+  </html>
