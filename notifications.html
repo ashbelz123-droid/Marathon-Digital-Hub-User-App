@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Notifications | Marathon Digital Hub</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+<link rel="stylesheet"
+href="notifications.css">
+
+</head>
+
+<body>
+
+<!--=========================================
+BACKGROUND
+==========================================-->
+
+<div class="backgroundGlow"></div>
+
+<canvas id="networkCanvas"></canvas>
+
+<div class="page">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="topHeader glass">
+
+<a
+href="dashboard.html"
+class="backButton">
+
+<span class="material-symbols-rounded">
+
+arrow_back_ios_new
+
+</span>
+
+</a>
+
+<div class="headerTitle">
+
+<h2>
+
+Notifications
+
+</h2>
+
+<p>
+
+Marathon Digital Hub
+
+</p>
+
+</div>
+
+<button
+id="markAllRead"
+class="headerButton">
+
+✔
+
+</button>
+
+</header>
+
+<!--=========================================
+SUMMARY CARD
+==========================================-->
+
+<section class="glass summaryCard">
+
+<div class="summaryLeft">
+
+<h3>
+
+Your Notifications
+
+</h3>
+
+<p>
+
+Stay updated with deposits, withdrawals, mining income and important announcements.
+
+</p>
+
+</div>
+
+<div class="summaryRight">
+
+<div id="notificationTotal">
+
+0
+
+</div>
+
+<small>
+
+Unread
+
+</small>
+
+</div>
+
+</section>
+
+<!--=========================================
+FILTER TABS
+==========================================-->
+
+<section class="filterSection">
+
+<button
+class="filterButton active"
+data-filter="all">
+
+All
+
+</button>
+
+<button
+class="filterButton"
+data-filter="deposit">
+
+Deposits
+
+</button>
+
+<button
+class="filterButton"
+data-filter="withdraw">
+
+Withdrawals
+
+</button>
+
+<button
+class="filterButton"
+data-filter="income">
+
+Income
+
+</button>
+
+<button
+class="filterButton"
+data-filter="system">
+
+System
+
+</button>
+
+</section>
+
+<!--=========================================
+NOTIFICATION LIST
+==========================================-->
+
+<section
+id="notificationList"
+class="notificationList">
+
+<div class="loadingCard glass">
+
+<div class="loader"></div>
+
+<p>
+
+Loading notifications...
+
+</p>
+
+</div>
+
+</section>
+
+  <!--=========================================
+NOTIFICATION TEMPLATE
+==========================================-->
+
+<template id="notificationTemplate">
+
+<div class="glass notificationCard unread">
+
+<div class="notificationIcon">
+
+🔔
+
+</div>
+
+<div class="notificationContent">
+
+<div class="notificationTop">
+
+<h3 class="notificationTitle">
+
+Title
+
+</h3>
+
+<span class="notificationTime">
+
+Just now
+
+</span>
+
+</div>
+
+<p class="notificationMessage">
+
+Message
+
+</p>
+
+<div class="notificationFooter">
+
+<span class="notificationType">
+
+SYSTEM
+
+</span>
+
+<span class="notificationStatus">
+
+NEW
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</template>
+
+<!--=========================================
+EMPTY STATE
+==========================================-->
+
+<section
+id="emptyState"
+class="emptyState"
+style="display:none;">
+
+<div class="emptyIcon">
+
+🔔
+
+</div>
+
+<h2>
+
+No Notifications
+
+</h2>
+
+<p>
+
+You're all caught up.
+
+New notifications from Marathon Digital Hub will appear here.
+
+</p>
+
+</section>
+
+<!--=========================================
+TODAY SECTION
+==========================================-->
+
+<section class="notificationGroup">
+
+<div class="groupTitle">
+
+Today
+
+</div>
+
+<div id="todayNotifications">
+
+<!-- Loaded by JavaScript -->
+
+</div>
+
+</section>
+
+<!--=========================================
+YESTERDAY SECTION
+==========================================-->
+
+<section class="notificationGroup">
+
+<div class="groupTitle">
+
+Yesterday
+
+</div>
+
+<div id="yesterdayNotifications">
+
+<!-- Loaded by JavaScript -->
+
+</div>
+
+</section>
+
+<!--=========================================
+OLDER SECTION
+==========================================-->
+
+<section class="notificationGroup">
+
+<div class="groupTitle">
+
+Earlier
+
+</div>
+
+<div id="olderNotifications">
+
+<!-- Loaded by JavaScript -->
+
+</div>
+
+</section>
+
+<!--=========================================
+MARA AI HELP
+==========================================-->
+
+<section
+class="glass maraHelpCard"
+onclick="location.href='mara-ai.html?topic=notifications'">
+
+<div class="maraAvatar">
+
+🤖
+
+</div>
+
+<div class="maraContent">
+
+<h3>
+
+Need help?
+
+</h3>
+
+<p>
+
+Ask Mara AI to explain your notifications, deposits, withdrawals or mining income.
+
+</p>
+
+</div>
+
+<span class="material-symbols-rounded">
+
+arrow_forward_ios
+
+</span>
+
+  </section>
+
+  <!--=========================================
+LOADING SCREEN
+==========================================-->
+
+<div
+id="loadingScreen"
+class="loadingScreen">
+
+<div class="loader"></div>
+
+<p>
+
+Loading Notifications...
+
+</p>
+
+</div>
+
+<!--=========================================
+BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>
+
+Home
+
+</small>
+
+</a>
+
+<a href="machines.html">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>
+
+Machines
+
+</small>
+
+</a>
+
+<a href="deposit.html">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>
+
+Deposit
+
+</small>
+
+</a>
+
+<a href="income.html">
+
+<span class="material-symbols-rounded">
+
+bar_chart
+
+</span>
+
+<small>
+
+Income
+
+</small>
+
+</a>
+
+<a
+href="notifications.html"
+class="active">
+
+<span class="material-symbols-rounded">
+
+notifications
+
+</span>
+
+<small>
+
+Alerts
+
+</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<!--=========================================
+SCRIPTS
+==========================================-->
+
+<script src="assets/js/mining-engine.js"></script>
+
+<script src="security.js"></script>
+
+<script src="notifications.js"></script>
+
+</body>
+  </html>
