@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Referral Center | Marathon Digital Hub</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+<link rel="stylesheet"
+href="referral.css">
+
+</head>
+
+<body>
+
+<!--=========================================
+PREMIUM BACKGROUND
+==========================================-->
+
+<div class="backgroundGlow"></div>
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<div class="page">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="topHeader glass">
+
+<a
+href="dashboard.html"
+class="backButton">
+
+<span class="material-symbols-rounded">
+
+arrow_back_ios_new
+
+</span>
+
+</a>
+
+<div class="headerTitle">
+
+<h2>
+
+Referral Center
+
+</h2>
+
+<p>
+
+Invite • Earn • Grow
+
+</p>
+
+</div>
+
+<button id="shareTopButton">
+
+<i class="fas fa-share-alt"></i>
+
+</button>
+
+</header>
+
+<!--=========================================
+REFERRAL SUMMARY
+==========================================-->
+
+<section class="glass referralSummary">
+
+<div class="summaryTop">
+
+<div>
+
+<p>
+
+Referral Earnings
+
+</p>
+
+<h1 id="referralBalance">
+
+UGX 0
+
+</h1>
+
+</div>
+
+<div class="summaryIcon">
+
+👥
+
+</div>
+
+</div>
+
+<div class="summaryStats">
+
+<div class="statBox">
+
+<h3 id="totalReferrals">
+
+0
+
+</h3>
+
+<small>
+
+Total Referrals
+
+</small>
+
+</div>
+
+<div class="statBox">
+
+<h3 id="activeReferrals">
+
+0
+
+</h3>
+
+<small>
+
+Active Members
+
+</small>
+
+</div>
+
+<div class="statBox">
+
+<h3 id="teamVolume">
+
+UGX 0
+
+</h3>
+
+<small>
+
+Team Volume
+
+</small>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+REFERRAL LINK
+==========================================-->
+
+<section class="glass referralCard">
+
+<h3>
+
+Your Referral Link
+
+</h3>
+
+<p>
+
+Invite friends and earn referral commissions when they join Marathon Digital Hub.
+
+</p>
+
+<div class="linkBox">
+
+<input
+type="text"
+id="referralLink"
+readonly>
+
+<button id="copyLinkButton">
+
+Copy
+
+</button>
+
+</div>
+
+<div class="codeBox">
+
+<span>
+
+Referral Code
+
+</span>
+
+<h2 id="referralCode">
+
+Loading...
+
+</h2>
+
+</div>
+
+</section>
+
+  <!--=========================================
+SHARE SECTION
+==========================================-->
+
+<section class="glass shareCard">
+
+<h3>
+
+Share Your Referral Link
+
+</h3>
+
+<p>
+
+Invite friends through your favorite platform.
+
+</p>
+
+<div class="shareGrid">
+
+<button id="shareWhatsapp" class="shareButton whatsapp">
+
+<i class="fab fa-whatsapp"></i>
+
+<span>
+
+WhatsApp
+
+</span>
+
+</button>
+
+<button id="shareTelegram" class="shareButton telegram">
+
+<i class="fab fa-telegram"></i>
+
+<span>
+
+Telegram
+
+</span>
+
+</button>
+
+<button id="shareFacebook" class="shareButton facebook">
+
+<i class="fab fa-facebook-f"></i>
+
+<span>
+
+Facebook
+
+</span>
+
+</button>
+
+<button id="shareMore" class="shareButton other">
+
+<i class="fas fa-share-nodes"></i>
+
+<span>
+
+More
+
+</span>
+
+</button>
+
+</div>
+
+</section>
+
+<!--=========================================
+REFERRAL REWARDS
+==========================================-->
+
+<section class="glass rewardCard">
+
+<h3>
+
+🎁 Referral Rewards
+
+</h3>
+
+<div class="rewardItem">
+
+<div class="rewardIcon">
+
+💰
+
+</div>
+
+<div>
+
+<h4>
+
+Earn Commission
+
+</h4>
+
+<p>
+
+Receive referral bonuses whenever your invited members invest.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="rewardItem">
+
+<div class="rewardIcon">
+
+🚀
+
+</div>
+
+<div>
+
+<h4>
+
+Unlimited Referrals
+
+</h4>
+
+<p>
+
+Invite as many people as you want without any limit.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="rewardItem">
+
+<div class="rewardIcon">
+
+👥
+
+</div>
+
+<div>
+
+<h4>
+
+Grow Your Team
+
+</h4>
+
+<p>
+
+Build a strong network and increase your referral income.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+TEAM PERFORMANCE
+==========================================-->
+
+<section class="glass performanceCard">
+
+<h3>
+
+Team Performance
+
+</h3>
+
+<div class="performanceGrid">
+
+<div class="performanceBox">
+
+<h2 id="todayReferrals">
+
+0
+
+</h2>
+
+<p>
+
+Today's Referrals
+
+</p>
+
+</div>
+
+<div class="performanceBox">
+
+<h2 id="weeklyReferrals">
+
+0
+
+</h2>
+
+<p>
+
+This Week
+
+</p>
+
+</div>
+
+<div class="performanceBox">
+
+<h2 id="monthlyReferrals">
+
+0
+
+</h2>
+
+<p>
+
+This Month
+
+</p>
+
+</div>
+
+<div class="performanceBox">
+
+<h2 id="teamIncome">
+
+UGX 0
+
+</h2>
+
+<p>
+
+Team Earnings
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+MARA AI
+==========================================-->
+
+<section
+class="glass maraCard"
+onclick="location.href='mara-ai.html?topic=referral'">
+
+<div class="maraAvatar">
+
+🤖
+
+</div>
+
+<div class="maraText">
+
+<h3>
+
+Ask Mara AI
+
+</h3>
+
+<p>
+
+Learn how referrals work, how commissions are calculated and how to grow your team faster.
+
+</p>
+
+</div>
+
+<span class="material-symbols-rounded">
+
+arrow_forward_ios
+
+</span>
+
+  </section>
+
+  <!--=========================================
+REFERRAL MEMBERS
+==========================================-->
+
+<section class="glass referralMembers">
+
+<div class="sectionHeader">
+
+<h2>
+
+My Team
+
+</h2>
+
+<span id="teamCount">
+
+0 Members
+
+</span>
+
+</div>
+
+<div id="teamList">
+
+<div class="emptyState">
+
+👥
+
+<p>
+
+No referrals yet.
+
+Start sharing your referral link to build your team.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+REFERRAL HISTORY
+==========================================-->
+
+<section class="glass historyCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Referral Earnings History
+
+</h2>
+
+</div>
+
+<div id="referralHistory">
+
+<div class="emptyState">
+
+💰
+
+<p>
+
+No referral earnings yet.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+TOP REFERRER
+==========================================-->
+
+<section class="glass achievementCard">
+
+<div class="achievementIcon">
+
+🏆
+
+</div>
+
+<div>
+
+<h3>
+
+Become a Top Referrer
+
+</h3>
+
+<p>
+
+Invite more active members and grow your referral income every day.
+
+There is no limit to how much you can earn.
+
+</p>
+
+</div>
+
+</section>
+
+<!--=========================================
+LOADING SCREEN
+==========================================-->
+
+<div
+id="loadingScreen"
+class="loadingScreen">
+
+<div class="loader"></div>
+
+<p>
+
+Loading Referral Data...
+
+</p>
+
+</div>
+
+<!--=========================================
+BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>
+
+Home
+
+</small>
+
+</a>
+
+<a href="machines.html">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>
+
+Machines
+
+</small>
+
+</a>
+
+<a href="deposit.html">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>
+
+Deposit
+
+</small>
+
+</a>
+
+<a href="income.html">
+
+<span class="material-symbols-rounded">
+
+bar_chart
+
+</span>
+
+<small>
+
+Income
+
+</small>
+
+</a>
+
+<a
+href="referral.html"
+class="active">
+
+<span class="material-symbols-rounded">
+
+groups
+
+</span>
+
+<small>
+
+Referral
+
+</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<!--=========================================
+SCRIPTS
+==========================================-->
+
+<script src="assets/js/network-background.js"></script>
+<script src="assets/js/mining-engine.js"></script>
+<script src="security.js"></script>
+<script src="referral.js"></script>
+
+</body>
+</html>
