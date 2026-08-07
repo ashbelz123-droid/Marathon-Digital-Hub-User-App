@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Deposit | Marathon Digital Hub</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+</head>
+
+<body id="depositPage">
+
+<!--=========================================
+NETWORK BACKGROUND
+==========================================-->
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<div class="pageContainer">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="pageHeader">
+
+<div>
+
+<h1>
+
+Deposit Funds
+
+</h1>
+
+<p>
+
+Securely fund your Marathon Digital Hub wallet.
+
+</p>
+
+</div>
+
+<button
+class="headerButton"
+onclick="location.href='notifications.html'">
+
+<span class="material-symbols-rounded">
+
+notifications
+
+</span>
+
+</button>
+
+</header>
+
+<!--=========================================
+WALLET CARD
+==========================================-->
+
+<section class="glass walletHero">
+
+<div>
+
+<p>
+
+Available Wallet Balance
+
+</p>
+
+<h1 id="walletBalance">
+
+UGX 0
+
+</h1>
+
+<div class="walletStatus">
+
+🟢 Wallet Active
+
+</div>
+
+</div>
+
+<div class="walletIcon">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+</div>
+
+</section>
+
+<!--=========================================
+SECURITY NOTICE
+==========================================-->
+
+<section class="glass securityCard">
+
+<div class="securityIcon">
+
+<span class="material-symbols-rounded">
+
+verified_user
+
+</span>
+
+</div>
+
+<div>
+
+<h3>
+
+Secure Deposits
+
+</h3>
+
+<p>
+
+Only send money to the official Marathon Digital Hub payment accounts shown below.
+
+Never use payment numbers shared outside the application.
+
+</p>
+
+</div>
+
+</section>
+
+<!--=========================================
+OFFICIAL PAYMENT ACCOUNTS
+==========================================-->
+
+<section class="glass">
+
+<div class="sectionHeader">
+
+<h2>
+
+Official Payment Accounts
+
+</h2>
+
+</div>
+
+  <!--=========================================
+MTN PAYMENT CARD
+==========================================-->
+
+<div class="glass paymentCard mtnCard">
+
+<div class="paymentHeader">
+
+<div class="networkLogo mtn">
+
+MTN
+
+</div>
+
+<div>
+
+<h3>
+
+MTN Mobile Money
+
+</h3>
+
+<p>
+
+Fast & Secure Deposit
+
+</p>
+
+</div>
+
+</div>
+
+<div class="paymentBody">
+
+<div class="paymentRow">
+
+<span>
+
+Account Name
+
+</span>
+
+<b id="mtnName">
+
+Loading...
+
+</b>
+
+</div>
+
+<div class="paymentRow">
+
+<span>
+
+Mobile Number
+
+</span>
+
+<b id="mtnNumber">
+
+Loading...
+
+</b>
+
+</div>
+
+<button
+id="copyMTN"
+class="primaryButton">
+
+<span class="material-symbols-rounded">
+
+content_copy
+
+</span>
+
+Copy MTN Number
+
+</button>
+
+</div>
+
+</div>
+
+<!--=========================================
+AIRTEL PAYMENT CARD
+==========================================-->
+
+<div class="glass paymentCard airtelCard">
+
+<div class="paymentHeader">
+
+<div class="networkLogo airtel">
+
+A
+
+</div>
+
+<div>
+
+<h3>
+
+Airtel Money
+
+</h3>
+
+<p>
+
+Fast & Secure Deposit
+
+</p>
+
+</div>
+
+</div>
+
+<div class="paymentBody">
+
+<div class="paymentRow">
+
+<span>
+
+Account Name
+
+</span>
+
+<b id="airtelName">
+
+Loading...
+
+</b>
+
+</div>
+
+<div class="paymentRow">
+
+<span>
+
+Mobile Number
+
+</span>
+
+<b id="airtelNumber">
+
+Loading...
+
+</b>
+
+</div>
+
+<button
+id="copyAirtel"
+class="primaryButton">
+
+<span class="material-symbols-rounded">
+
+content_copy
+
+</span>
+
+Copy Airtel Number
+
+</button>
+
+</div>
+
+</div>
+
+<!--=========================================
+DEPOSIT GUIDE
+==========================================-->
+
+<section class="glass depositGuide">
+
+<div class="sectionHeader">
+
+<h2>
+
+How To Deposit
+
+</h2>
+
+</div>
+
+<div class="guideStep">
+
+<div class="guideNumber">
+
+1
+
+</div>
+
+<div>
+
+<h4>
+
+Send Money
+
+</h4>
+
+<p>
+
+Use the official MTN or Airtel number shown above.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="guideStep">
+
+<div class="guideNumber">
+
+2
+
+</div>
+
+<div>
+
+<h4>
+
+Keep Your SMS
+
+</h4>
+
+<p>
+
+Do not delete the Mobile Money confirmation message.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="guideStep">
+
+<div class="guideNumber">
+
+3
+
+</div>
+
+<div>
+
+<h4>
+
+Complete Deposit Form
+
+</h4>
+
+<p>
+
+Enter the exact amount, sender number and transaction ID.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="guideStep">
+
+<div class="guideNumber">
+
+4
+
+</div>
+
+<div>
+
+<h4>
+
+Admin Verification
+
+</h4>
+
+<p>
+
+Your wallet will be credited after your payment has been verified.
+
+</p>
+
+</div>
+
+</div>
+
+  </section>
+
+ <!--=========================================
+SUBMIT DEPOSIT
+==========================================-->
+
+<section class="glass depositFormCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Submit Deposit Request
+
+</h2>
+
+<span class="liveBadge">
+
+5–30 Min
+
+</span>
+
+</div>
+
+<div class="methodSelector">
+
+<button
+id="mtnMethod"
+class="methodButton active">
+
+🟡 MTN Money
+
+</button>
+
+<button
+id="airtelMethod"
+class="methodButton">
+
+🔴 Airtel Money
+
+</button>
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Deposit Amount (UGX)
+
+</label>
+
+<input
+type="number"
+id="depositAmount"
+placeholder="Enter Amount">
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Sender Mobile Number
+
+</label>
+
+<input
+type="tel"
+id="senderNumber"
+placeholder="+2567XXXXXXXX">
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Transaction ID
+
+</label>
+
+<input
+type="text"
+id="transactionId"
+placeholder="Example: PP2409XXXXXX">
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Message (Optional)
+
+</label>
+
+<textarea
+id="depositMessage"
+rows="4"
+maxlength="200"
+placeholder="Write an optional note for the administrator...">
+
+</textarea>
+
+</div>
+
+<div class="glass depositRules">
+
+<h3>
+
+Deposit Rules
+
+</h3>
+
+<ul>
+
+<li>✔ Minimum deposit is <strong>UGX 10,000</strong>.</li>
+
+<li>✔ Only one pending deposit request is allowed.</li>
+
+<li>✔ Use the exact amount sent.</li>
+
+<li>✔ Transaction ID must be unique.</li>
+
+<li>✔ Sender number must match the payment.</li>
+
+<li>✔ Do not submit duplicate requests.</li>
+
+</ul>
+
+</div>
+
+<button
+id="submitDeposit"
+class="primaryButton bigButton">
+
+<span class="material-symbols-rounded">
+
+payments
+
+</span>
+
+Submit Deposit Request
+
+</button>
+
+</section>
+
+<!--=========================================
+LATEST REQUEST
+==========================================-->
+
+<section class="glass latestDepositCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Latest Deposit
+
+</h2>
+
+</div>
+
+<div
+id="latestStatus"
+class="statusBadge pending">
+
+🟡 No Request
+
+</div>
+
+<div class="latestGrid">
+
+<div>
+
+<p>Amount</p>
+
+<h3 id="latestAmount">
+
+UGX 0
+
+</h3>
+
+</div>
+
+<div>
+
+<p>Method</p>
+
+<h3 id="latestMethod">
+
+-
+
+</h3>
+
+</div>
+
+<div>
+
+<p>Sender</p>
+
+<h3 id="latestSender">
+
+-
+
+</h3>
+
+</div>
+
+<div>
+
+<p>Transaction ID</p>
+
+<h3 id="latestTransaction">
+
+-
+
+</h3>
+
+</div>
+
+<div>
+
+<p>Submitted</p>
+
+<h3 id="latestTime">
+
+-
+
+</h3>
+
+</div>
+
+</div>
+
+<button
+id="cancelDeposit"
+class="dangerButton">
+
+Cancel Pending Request
+
+</button>
+
+  </section>
+
+ <!--=========================================
+DEPOSIT HISTORY
+==========================================-->
+
+<section class="glass historyCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Deposit History
+
+</h2>
+
+<span id="historyCount">
+
+0 Records
+
+</span>
+
+</div>
+
+<div id="depositHistory">
+
+<div class="loadingCard">
+
+Loading deposit history...
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+IMPORTANT NOTICE
+==========================================-->
+
+<section class="glass noticeCard">
+
+<div class="noticeHeader">
+
+<span class="material-symbols-rounded">
+
+info
+
+</span>
+
+<h2>
+
+Important Information
+
+</h2>
+
+</div>
+
+<ul class="noticeList">
+
+<li>
+
+Deposits are reviewed within <b>5–30 minutes</b>.
+
+</li>
+
+<li>
+
+Only one pending deposit request is allowed.
+
+</li>
+
+<li>
+
+Keep your Mobile Money SMS until your wallet is credited.
+
+</li>
+
+<li>
+
+Wallet balance updates only after approval.
+
+</li>
+
+<li>
+
+Never send money to numbers shared outside Marathon Digital Hub.
+
+</li>
+
+</ul>
+
+</section>
+
+<!--=========================================
+MARA AI DEPOSIT ASSISTANT
+==========================================-->
+
+<section
+class="glass maraCard"
+onclick="location.href='mara-ai.html?topic=deposit'">
+
+<div class="maraLeft">
+
+<div class="maraIcon">
+
+🤖
+
+</div>
+
+<div>
+
+<h3>
+
+Mara AI Deposit Assistant
+
+</h3>
+
+<p>
+
+Need help depositing?
+
+Learn MTN & Airtel steps, find your Transaction ID, understand pending deposits, and get answers instantly.
+
+</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+
+arrow_forward_ios
+
+</span>
+
+</section>
+
+<!--=========================================
+BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>Home</small>
+
+</a>
+
+<a href="machines.html">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>Machines</small>
+
+</a>
+
+<a
+href="deposit.html"
+class="active">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>Deposit</small>
+
+</a>
+
+<a href="income.html">
+
+<span class="material-symbols-rounded">
+
+monitoring
+
+</span>
+
+<small>Income</small>
+
+</a>
+
+<a href="profile.html">
+
+<span class="material-symbols-rounded">
+
+person
+
+</span>
+
+<small>Profile</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<script src="security.js"></script>
+
+<script src="assets/js/mining-engine.js"></script>
+
+<script src="deposit.js"></script>
+
+</body>
+
+  </html> 
