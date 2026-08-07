@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Profile | Marathon Digital Hub</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+<link rel="stylesheet"
+href="profile.css">
+
+</head>
+
+<body>
+
+<!--=========================================
+BACKGROUND
+==========================================-->
+
+<div class="backgroundGlow"></div>
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<div class="page">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="topHeader glass">
+
+<a
+href="dashboard.html"
+class="backButton">
+
+<span class="material-symbols-rounded">
+
+arrow_back_ios_new
+
+</span>
+
+</a>
+
+<div class="headerTitle">
+
+<h2>
+
+My Profile
+
+</h2>
+
+<p>
+
+Marathon Digital Hub
+
+</p>
+
+</div>
+
+<a
+href="settings.html"
+class="settingsButton">
+
+<span class="material-symbols-rounded">
+
+settings
+
+</span>
+
+</a>
+
+</header>
+
+<!--=========================================
+PROFILE CARD
+==========================================-->
+
+<section class="glass profileCard">
+
+<div class="profileImageBox">
+
+<img
+id="profileImage"
+src="images/default-avatar.png"
+alt="Profile">
+
+<button
+id="changePhoto">
+
+<span class="material-symbols-rounded">
+
+photo_camera
+
+</span>
+
+</button>
+
+<input
+type="file"
+id="photoInput"
+hidden>
+
+</div>
+
+<h2 id="fullName">
+
+Loading...
+
+</h2>
+
+<p id="username">
+
+@loading
+
+</p>
+
+<div class="badges">
+
+<span class="memberBadge">
+
+⭐ Member
+
+</span>
+
+<span
+id="accountStatus"
+class="statusBadge">
+
+🟢 Active
+
+</span>
+
+</div>
+
+</section>
+
+<!--=========================================
+ACCOUNT OVERVIEW
+==========================================-->
+
+<section class="glass overviewCard">
+
+<div class="overviewItem">
+
+<h3 id="walletBalance">
+
+UGX 0
+
+</h3>
+
+<p>
+
+Wallet Balance
+
+</p>
+
+</div>
+
+<div class="overviewItem">
+
+<h3 id="activeMachines">
+
+0
+
+</h3>
+
+<p>
+
+Active Machines
+
+</p>
+
+</div>
+
+<div class="overviewItem">
+
+<h3 id="teamMembers">
+
+0
+
+</h3>
+
+<p>
+
+Team Members
+
+</p>
+
+</div>
+
+<div class="overviewItem">
+
+<h3 id="referralIncome">
+
+UGX 0
+
+</h3>
+
+<p>
+
+Referral Earnings
+
+</p>
+
+</div>
+
+</section>
+
+  <!--=========================================
+REFERRAL CARD
+==========================================-->
+
+<section class="glass referralCard">
+
+<h3>
+
+Referral Center
+
+</h3>
+
+<p>
+
+Invite friends and earn referral commissions.
+
+</p>
+
+<div class="referralBox">
+
+<input
+type="text"
+id="referralCode"
+readonly>
+
+<button id="copyReferral">
+
+Copy
+
+</button>
+
+</div>
+
+<button
+class="shareReferralButton"
+onclick="location.href='referral.html'">
+
+<span class="material-symbols-rounded">
+
+group_add
+
+</span>
+
+Open Referral Center
+
+</button>
+
+</section>
+
+<!--=========================================
+MARA AI
+==========================================-->
+
+<section
+class="glass maraCard"
+onclick="location.href='mara-ai.html?topic=profile'">
+
+<div class="maraAvatar">
+
+🤖
+
+</div>
+
+<div>
+
+<h3>
+
+Ask Mara AI
+
+</h3>
+
+<p>
+
+Need help with your account, wallet, referrals or profile?
+
+</p>
+
+</div>
+
+<span class="material-symbols-rounded">
+
+arrow_forward_ios
+
+</span>
+
+</section>
+
+<!--=========================================
+ABOUT MDH
+==========================================-->
+
+<section class="glass menuCard">
+
+<a href="about.html" class="menuItem">
+
+<div class="menuLeft">
+
+<span class="material-symbols-rounded">
+
+apartment
+
+</span>
+
+About Marathon Digital Hub
+
+</div>
+
+<span class="material-symbols-rounded">
+
+chevron_right
+
+</span>
+
+</a>
+
+<a href="faq.html" class="menuItem">
+
+<div class="menuLeft">
+
+<span class="material-symbols-rounded">
+
+help
+
+</span>
+
+Frequently Asked Questions
+
+</div>
+
+<span class="material-symbols-rounded">
+
+chevron_right
+
+</span>
+
+</a>
+
+<a href="terms.html" class="menuItem">
+
+<div class="menuLeft">
+
+<span class="material-symbols-rounded">
+
+gavel
+
+</span>
+
+Terms & Conditions
+
+</div>
+
+<span class="material-symbols-rounded">
+
+chevron_right
+
+</span>
+
+</a>
+
+<a href="privacy.html" class="menuItem">
+
+<div class="menuLeft">
+
+<span class="material-symbols-rounded">
+
+shield_lock
+
+</span>
+
+Privacy Policy
+
+</div>
+
+<span class="material-symbols-rounded">
+
+chevron_right
+
+</span>
+
+</a>
+
+</section>
+
+<!--=========================================
+ACCOUNT INFORMATION
+==========================================-->
+
+<section class="glass accountCard">
+
+<h3>
+
+Account Information
+
+</h3>
+
+<div class="infoRow">
+
+<span>
+
+Email
+
+</span>
+
+<strong id="userEmail">
+
+Loading...
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+Phone Number
+
+</span>
+
+<strong id="userPhone">
+
+Loading...
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+Member Since
+
+</span>
+
+<strong id="joinDate">
+
+Loading...
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+Account ID
+
+</span>
+
+<strong id="userId">
+
+Loading...
+
+</strong>
+
+</div>
+
+  </section>
+
+  <!--=========================================
+LOADING SCREEN
+==========================================-->
+
+<div
+id="loadingScreen"
+class="loadingScreen">
+
+<div class="loader"></div>
+
+<p>
+
+Loading Profile...
+
+</p>
+
+</div>
+
+<!--=========================================
+BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>
+
+Home
+
+</small>
+
+</a>
+
+<a href="machines.html">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>
+
+Machines
+
+</small>
+
+</a>
+
+<a href="deposit.html">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>
+
+Deposit
+
+</small>
+
+</a>
+
+<a href="income.html">
+
+<span class="material-symbols-rounded">
+
+bar_chart
+
+</span>
+
+<small>
+
+Income
+
+</small>
+
+</a>
+
+<a
+href="profile.html"
+class="active">
+
+<span class="material-symbols-rounded">
+
+person
+
+</span>
+
+<small>
+
+Profile
+
+</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<!--=========================================
+SCRIPTS
+==========================================-->
+
+<script src="assets/js/network-background.js"></script>
+
+<script src="assets/js/mining-engine.js"></script>
+
+<script src="security.js"></script>
+
+<script src="profile.js"></script>
+
+</body>
+
+  </html>
