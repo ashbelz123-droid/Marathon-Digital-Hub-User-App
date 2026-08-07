@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Withdraw | Marathon Digital Hub</title>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+<link
+rel="stylesheet"
+href="withdraw.css">
+
+</head>
+
+<body id="withdrawPage">
+
+<!--=========================================
+NETWORK BACKGROUND
+==========================================-->
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<div class="backgroundGlow"></div>
+
+<div class="pageContainer">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="pageHeader glass">
+
+<div class="headerLeft">
+
+<a
+href="dashboard.html"
+class="backButton">
+
+<span class="material-symbols-rounded">
+
+arrow_back_ios_new
+
+</span>
+
+</a>
+
+<div>
+
+<h2>
+
+Withdraw Funds
+
+</h2>
+
+<p>
+
+Secure Mobile Money Withdrawals
+
+</p>
+
+</div>
+
+</div>
+
+<div
+class="notificationButton"
+onclick="location.href='notifications.html'">
+
+<span class="material-symbols-rounded">
+
+notifications
+
+</span>
+
+<div id="notificationCount">
+
+0
+
+</div>
+
+</div>
+
+</header>
+
+<!--=========================================
+WALLET HERO
+==========================================-->
+
+<section class="walletHero glass">
+
+<div class="walletLeft">
+
+<p>
+
+Available Wallet Balance
+
+</p>
+
+<h1 id="walletBalance">
+
+UGX 0
+
+</h1>
+
+<div class="walletBadge">
+
+🟢 Available for Withdrawal
+
+</div>
+
+</div>
+
+<div class="walletRight">
+
+<div class="walletCircle">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+PROCESSING CARD
+==========================================-->
+
+<section class="glass processingCard">
+
+<div class="processingIcon">
+
+<span class="material-symbols-rounded">
+
+schedule
+
+</span>
+
+</div>
+
+<div>
+
+<h3>
+
+Withdrawal Processing
+
+</h3>
+
+<p>
+
+Estimated approval time
+
+<strong>
+
+10 Minutes – 24 Hours
+
+</strong>
+
+depending on verification.
+
+</p>
+
+</div>
+
+</section>
+
+<!--=========================================
+PENDING WITHDRAWAL
+==========================================-->
+
+<section
+id="pendingCard"
+class="glass pendingCard"
+style="display:none;">
+
+<div class="pendingHeader">
+
+<h3>
+
+Pending Withdrawal
+
+</h3>
+
+<div class="pendingBadge">
+
+🟡 Pending
+
+</div>
+
+</div>
+
+<div class="statusTracker">
+
+<div class="statusStep active">
+
+<div class="dot"></div>
+
+<span>
+
+Submitted
+
+</span>
+
+</div>
+
+<div class="statusLine"></div>
+
+<div class="statusStep">
+
+<div class="dot"></div>
+
+<span>
+
+Review
+
+</span>
+
+</div>
+
+<div class="statusLine"></div>
+
+<div class="statusStep">
+
+<div class="dot"></div>
+
+<span>
+
+Approved
+
+</span>
+
+</div>
+
+</div>
+
+<div class="pendingInfo">
+
+<div class="infoRow">
+
+<span>
+
+Amount
+
+</span>
+
+<strong id="pendingAmount">
+
+UGX 0
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+Processing Fee
+
+</span>
+
+<strong id="pendingFee">
+
+UGX 0
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+You Receive
+
+</span>
+
+<strong id="pendingReceive">
+
+UGX 0
+
+</strong>
+
+</div>
+
+<div class="infoRow">
+
+<span>
+
+Phone Number
+
+</span>
+
+<strong id="pendingPhone">
+
+-
+
+</strong>
+
+</div>
+
+</div>
+
+<div class="pendingButtons">
+
+<button id="refreshBtn">
+
+<i class="fas fa-rotate"></i>
+
+Refresh
+
+</button>
+
+<button id="cancelBtn">
+
+<i class="fas fa-xmark"></i>
+
+Cancel
+
+</button>
+
+</div>
+
+  </section>
+
+ <!--=========================================
+WITHDRAW FORM
+==========================================-->
+
+<section
+id="withdrawForm"
+class="glass withdrawFormCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Request Withdrawal
+
+</h2>
+
+<div class="feeBadge">
+
+9.5% Fee
+
+</div>
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Withdrawal Amount
+
+</label>
+
+<div class="inputBox">
+
+<span>
+
+UGX
+
+</span>
+
+<input
+type="number"
+id="withdrawAmount"
+placeholder="Enter amount">
+
+</div>
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Mobile Money Network
+
+</label>
+
+<div class="networkSelector">
+
+<button
+type="button"
+id="mtnMethod"
+class="networkButton active">
+
+🟡 MTN
+
+</button>
+
+<button
+type="button"
+id="airtelMethod"
+class="networkButton">
+
+🔴 Airtel
+
+</button>
+
+</div>
+
+<select id="withdrawMethod">
+
+<option value="MTN Mobile Money">
+
+MTN Mobile Money
+
+</option>
+
+<option value="Airtel Money">
+
+Airtel Money
+
+</option>
+
+</select>
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Receiver Mobile Number
+
+</label>
+
+<input
+type="tel"
+id="phoneNumber"
+placeholder="+2567XXXXXXXX">
+
+<small>
+
+Money will be sent to this registered Mobile Money number.
+
+</small>
+
+</div>
+
+<div class="inputGroup">
+
+<label>
+
+Message (Optional)
+
+</label>
+
+<textarea
+id="withdrawMessage"
+rows="3"
+maxlength="200"
+placeholder="Write a message for the administrator..."></textarea>
+
+</div>
+
+<!--=========================================
+LIVE CALCULATOR
+==========================================-->
+
+<div class="glass calculationCard">
+
+<div class="calcHeader">
+
+<h3>
+
+Live Withdrawal Summary
+
+</h3>
+
+</div>
+
+<div class="calcRow">
+
+<span>
+
+Withdrawal Amount
+
+</span>
+
+<strong id="summaryAmount">
+
+UGX 0
+
+</strong>
+
+</div>
+
+<div class="calcRow">
+
+<span>
+
+Processing Fee (9.5%)
+
+</span>
+
+<strong id="summaryFee">
+
+UGX 0
+
+</strong>
+
+</div>
+
+<div class="calcRow total">
+
+<span>
+
+You Will Receive
+
+</span>
+
+<strong id="summaryReceive">
+
+UGX 0
+
+</strong>
+
+</div>
+
+</div>
+
+<!--=========================================
+NOTICE
+==========================================-->
+
+<div class="glass noticeCard">
+
+<div class="noticeIcon">
+
+⚠️
+
+</div>
+
+<div>
+
+<h3>
+
+Withdrawal Notice
+
+</h3>
+
+<p>
+
+Marathon Digital Hub charges a
+<strong>
+
+9.5% processing fee
+
+</strong>
+
+on every withdrawal.
+
+The deducted fee covers wallet processing, security verification and Mobile Money transfer costs.
+
+Once approved you will receive:
+
+</p>
+
+<ul>
+
+<li>
+
+✔ Withdrawal Amount
+
+</li>
+
+<li>
+
+✔ Fee Charged
+
+</li>
+
+<li>
+
+✔ Amount Received
+
+</li>
+
+<li>
+
+✔ Updated Wallet Balance
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<button
+id="withdrawBtn"
+class="primaryButton largeButton">
+
+<span class="material-symbols-rounded">
+
+payments
+
+</span>
+
+Continue Withdrawal
+
+</button>
+
+  </section>
+
+  <!--=========================================
+CONFIRMATION POPUP
+==========================================-->
+
+<div id="confirmPopup" class="popup">
+
+<div class="popupCard glass">
+
+<div class="popupIcon">
+
+💸
+
+</div>
+
+<h2>
+
+Confirm Withdrawal
+
+</h2>
+
+<p>
+
+Please review your withdrawal details before submitting.
+
+</p>
+
+<div class="popupSummary">
+
+<div class="summaryRow">
+
+<span>
+
+Withdrawal
+
+</span>
+
+<strong id="popupAmount">
+
+UGX 0
+
+</strong>
+
+</div>
+
+<div class="summaryRow">
+
+<span>
+
+Processing Fee (9.5%)
+
+</span>
+
+<strong id="popupFee">
+
+UGX 0
+
+</strong>
+
+</div>
+
+<div class="summaryRow total">
+
+<span>
+
+You Will Receive
+
+</span>
+
+<strong id="popupReceive">
+
+UGX 0
+
+</strong>
+
+</div>
+
+</div>
+
+<div class="popupNotice">
+
+Only one withdrawal request can remain pending at a time.
+
+</div>
+
+<div class="popupButtons">
+
+<button id="cancelPopup" class="secondaryButton">
+
+Cancel
+
+</button>
+
+<button id="confirmWithdrawal" class="primaryButton">
+
+Confirm Withdrawal
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!--=========================================
+SUCCESS POPUP
+==========================================-->
+
+<div id="successPopup" class="popup">
+
+<div class="popupCard glass successCard">
+
+<div class="successIcon">
+
+✅
+
+</div>
+
+<h2>
+
+Request Submitted
+
+</h2>
+
+<p>
+
+Your withdrawal request has been successfully submitted for review.
+
+</p>
+
+<div class="successInfo">
+
+<p>
+
+Processing Time
+
+</p>
+
+<strong>
+
+10 Minutes - 24 Hours
+
+</strong>
+
+</div>
+
+<button id="successOk" class="primaryButton">
+
+Continue
+
+</button>
+
+</div>
+
+</div>
+
+<!--=========================================
+WITHDRAWAL HISTORY
+==========================================-->
+
+<section class="glass historyCard">
+
+<div class="sectionHeader">
+
+<h2>
+
+Withdrawal History
+
+</h2>
+
+<span id="historyCount">
+
+0 Records
+
+</span>
+
+</div>
+
+<div id="withdrawHistory">
+
+<div class="historyEmpty">
+
+<span class="material-symbols-rounded">
+
+history
+
+</span>
+
+<p>
+
+No withdrawals yet.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+MARA AI
+==========================================-->
+
+<section
+class="glass maraCard"
+onclick="location.href='mara-ai.html?topic=withdraw'">
+
+<div class="maraLeft">
+
+<div class="maraAvatar">
+
+🤖
+
+</div>
+
+<div>
+
+<h3>
+
+Ask Mara AI
+
+</h3>
+
+<p>
+
+Need help withdrawing?
+
+Mara AI explains fees, pending requests, approval time, rejected withdrawals and Mobile Money requirements.
+
+</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+
+arrow_forward_ios
+
+</span>
+
+</section>
+
+<!--=========================================
+LOADING
+==========================================-->
+
+<div
+id="loadingScreen"
+class="loadingScreen">
+
+<div class="loader"></div>
+
+<p>
+
+Submitting Withdrawal...
+
+</p>
+
+</div>
+
+<!--=========================================
+PREMIUM BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>
+
+Home
+
+</small>
+
+</a>
+
+<a href="machines.html">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>
+
+Machines
+
+</small>
+
+</a>
+
+<a href="deposit.html">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>
+
+Deposit
+
+</small>
+
+</a>
+
+<a
+href="withdraw.html"
+class="active">
+
+<span class="material-symbols-rounded">
+
+payments
+
+</span>
+
+<small>
+
+Withdraw
+
+</small>
+
+</a>
+
+<a href="profile.html">
+
+<span class="material-symbols-rounded">
+
+person
+
+</span>
+
+<small>
+
+Profile
+
+</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<script src="security.js"></script>
+
+<script src="assets/js/mining-engine.js"></script>
+
+<script src="withdraw.js"></script>
+
+</body>
+
+  </html>
