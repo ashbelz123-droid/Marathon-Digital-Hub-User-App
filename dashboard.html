@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Dashboard | Marathon Digital Hub</title>
+
+<link
+rel="manifest"
+href="manifest.json">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+</head>
+
+<body id="dashboardPage">
+
+<!--=========================================
+ANIMATED BACKGROUND
+==========================================-->
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<!--=========================================
+MAIN CONTAINER
+==========================================-->
+
+<div class="dashboardContainer">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="dashboardHeader">
+
+<div class="headerLeft">
+
+<p class="welcomeText">
+
+Welcome Back
+
+</p>
+
+<h2 id="userName">
+
+Loading...
+
+</h2>
+
+</div>
+
+<div class="headerRight">
+
+<button
+id="notificationBtn"
+class="iconButton">
+
+<span class="material-symbols-rounded">
+
+notifications
+
+</span>
+
+<span
+id="notificationCount"
+class="badge">
+
+0
+
+</span>
+
+</button>
+
+</div>
+
+</header>
+
+<!--=========================================
+PREMIUM HERO BANNER
+==========================================-->
+
+<section
+id="heroBanner"
+class="heroBanner">
+
+<img
+id="bannerImage"
+alt="Marathon Banner">
+
+<div class="heroOverlay">
+
+<h1>
+
+MARATHON DIGITAL HUB
+
+</h1>
+
+<p>
+
+Secure • Reliable • Professional Crypto Mining
+
+</p>
+
+<div class="liveBadge">
+
+● LIVE
+
+</div>
+
+</div>
+
+</section>
+
+  <!--=========================================
+WALLET SECTION
+==========================================-->
+
+<section class="walletSection">
+
+    <div class="walletCard">
+
+        <div class="walletTop">
+
+            <div>
+
+                <p class="walletLabel">
+
+                    Wallet Balance
+
+                </p>
+
+                <h2 id="walletBalance">
+
+                    UGX 0
+
+                </h2>
+
+            </div>
+
+            <div class="walletIcon">
+
+                <span class="material-symbols-rounded">
+
+                    account_balance_wallet
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--=========================================
+ACTIVE MACHINES
+==========================================-->
+
+<section class="machinesOverview">
+
+    <div
+    class="machinesCard"
+    onclick="location.href='machines.html'">
+
+        <div class="machinesLeft">
+
+            <div class="machineIcon">
+
+                <span class="material-symbols-rounded">
+
+                    memory
+
+                </span>
+
+            </div>
+
+            <div>
+
+                <p>
+
+                    Active Machines
+
+                </p>
+
+                <h2 id="activeMachines">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="machineArrow">
+
+            <span class="material-symbols-rounded">
+
+                arrow_forward_ios
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--=========================================
+FEATURE IMAGE
+==========================================-->
+
+<section class="featureBanner">
+
+    <img
+    id="featureImage"
+    src=""
+    alt="Mining Network">
+
+    <div class="featureOverlay">
+
+        <h3>
+
+            Next Generation Crypto Mining
+
+        </h3>
+
+        <p>
+
+            Secure. Fast. Transparent.
+
+        </p>
+
+    </div>
+
+  </section>
+
+  <!--=========================================
+LIVE CRYPTO MARKET
+==========================================-->
+
+<section class="marketSection">
+
+    <div class="sectionHeader">
+
+        <div>
+
+            <h2>
+
+                Live Crypto Market
+
+            </h2>
+
+            <p>
+
+                Real-time market prices
+
+            </p>
+
+        </div>
+
+        <div class="marketStatus">
+
+            <span class="liveDot"></span>
+
+            LIVE
+
+        </div>
+
+    </div>
+
+    <div
+    id="marketContainer"
+    class="marketContainer">
+
+        <!-- BTC -->
+
+        <div class="marketCard">
+
+            <div class="coinLeft">
+
+                <img
+                id="btcIcon"
+                alt="Bitcoin">
+
+                <div>
+
+                    <h4>Bitcoin</h4>
+
+                    <small>BTC</small>
+
+                </div>
+
+            </div>
+
+            <div class="coinRight">
+
+                <h4 id="btcPrice">
+
+                    Loading...
+
+                </h4>
+
+                <span id="btcChange">
+
+                    ---
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- ETH -->
+
+        <div class="marketCard">
+
+            <div class="coinLeft">
+
+                <img
+                id="ethIcon"
+                alt="Ethereum">
+
+                <div>
+
+                    <h4>Ethereum</h4>
+
+                    <small>ETH</small>
+
+                </div>
+
+            </div>
+
+            <div class="coinRight">
+
+                <h4 id="ethPrice">
+
+                    Loading...
+
+                </h4>
+
+                <span id="ethChange">
+
+                    ---
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- BNB -->
+
+        <div class="marketCard">
+
+            <div class="coinLeft">
+
+                <img
+                id="bnbIcon"
+                alt="BNB">
+
+                <div>
+
+                    <h4>BNB</h4>
+
+                    <small>BNB</small>
+
+                </div>
+
+            </div>
+
+            <div class="coinRight">
+
+                <h4 id="bnbPrice">
+
+                    Loading...
+
+                </h4>
+
+                <span id="bnbChange">
+
+                    ---
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+      </section>
+
+  <!--=========================================
+LIVE MARKET CHART
+==========================================-->
+
+<section class="chartSection">
+
+    <div class="sectionHeader">
+
+        <div>
+
+            <h2>
+
+                Live Market Chart
+
+            </h2>
+
+            <p>
+
+                Powered by TradingView
+
+            </p>
+
+        </div>
+
+        <button
+        id="changePairBtn"
+        class="glassMiniButton">
+
+            BTC/USDT
+
+        </button>
+
+    </div>
+
+    <div class="chartCard">
+
+        <div
+        id="tradingChart">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--=========================================
+LATEST ANNOUNCEMENTS
+==========================================-->
+
+<section class="announcementSection">
+
+    <div class="sectionHeader">
+
+        <div>
+
+            <h2>
+
+                Latest Announcements
+
+            </h2>
+
+            <p>
+
+                Updates from Marathon Digital Hub
+
+            </p>
+
+        </div>
+
+        <span class="marketStatus">
+
+            <span class="liveDot"></span>
+
+            LIVE
+
+        </span>
+
+    </div>
+
+    <div
+    id="announcementContainer">
+
+        <div class="announcementCard">
+
+            <div class="announcementTop">
+
+                <h4>
+
+                    Loading...
+
+                </h4>
+
+                <small>
+
+                    Please wait
+
+                </small>
+
+            </div>
+
+            <p>
+
+                Fetching latest announcements...
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+  <!--=========================================
+MARA AI
+==========================================-->
+
+<section class="maraSection">
+
+    <div
+    class="maraCard"
+    onclick="location.href='mara-ai.html'">
+
+        <div class="maraLeft">
+
+            <div class="maraOrb">
+
+                <div class="orbPulse"></div>
+
+                <span class="material-symbols-rounded">
+
+                    smart_toy
+
+                </span>
+
+            </div>
+
+            <div class="maraInfo">
+
+                <h2>
+
+                    Mara AI
+
+                </h2>
+
+                <p>
+
+                    Your intelligent assistant for Marathon Digital Hub. Ask questions, get guidance, and manage your account faster.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="maraArrow">
+
+            <span class="material-symbols-rounded">
+
+                arrow_forward_ios
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--=========================================
+APP HIGHLIGHT
+==========================================-->
+
+<section class="highlightSection">
+
+    <div class="highlightCard">
+
+        <img
+        id="highlightImage"
+        src=""
+        alt="Marathon Digital Hub">
+
+        <div class="highlightOverlay">
+
+            <h3>
+
+                Secure Digital Mining
+
+            </h3>
+
+            <p>
+
+                Built for speed, security and reliability with a premium user experience.
+
+            </p>
+
+        </div>
+
+    </div>
+
+          </section>
+
+  <!--=========================================
+PREMIUM FLOATING NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+    <a href="dashboard.html" class="navItem active">
+
+        <span class="navIndicator"></span>
+
+        <span class="material-symbols-rounded">
+
+            home
+
+        </span>
+
+        <small>Home</small>
+
+    </a>
+
+    <a href="machines.html" class="navItem">
+
+        <span class="navIndicator"></span>
+
+        <span class="material-symbols-rounded">
+
+            memory
+
+        </span>
+
+        <small>Machines</small>
+
+    </a>
+
+    <a href="mara-ai.html" class="navItem aiButton">
+
+        <div class="aiRing"></div>
+
+        <span class="material-symbols-rounded">
+
+            smart_toy
+
+        </span>
+
+        <small>Mara AI</small>
+
+    </a>
+
+    <a href="income.html" class="navItem">
+
+        <span class="navIndicator"></span>
+
+        <span class="material-symbols-rounded">
+
+            monitoring
+
+        </span>
+
+        <small>Income</small>
+
+    </a>
+
+    <a href="profile.html" class="navItem">
+
+        <span class="navIndicator"></span>
+
+        <span class="material-symbols-rounded">
+
+            account_circle
+
+        </span>
+
+        <small>Profile</small>
+
+    </a>
+
+</nav>
+
+</div>
+
+<!--=========================================
+JAVASCRIPT
+==========================================-->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
