@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Mara AI | Marathon Digital Hub</title>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+<link
+rel="stylesheet"
+href="mara-ai.css">
+
+</head>
+
+<body>
+
+<!--=========================================
+ANIMATED BACKGROUND
+==========================================-->
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<div class="backgroundGlow"></div>
+
+<div class="page">
+
+<!--=========================================
+HEADER
+==========================================-->
+
+<header class="topHeader glass">
+
+<a
+href="dashboard.html"
+class="backButton">
+
+<span class="material-symbols-rounded">
+
+arrow_back_ios_new
+
+</span>
+
+</a>
+
+<div class="headerInfo">
+
+<div class="avatar">
+
+🤖
+
+</div>
+
+<div>
+
+<h2>
+
+Mara AI
+
+</h2>
+
+<p>
+
+Marathon Digital Assistant
+
+</p>
+
+</div>
+
+</div>
+
+<div class="onlineStatus">
+
+🟢 Online
+
+</div>
+
+</header>
+
+<!--=========================================
+WELCOME CARD
+==========================================-->
+
+<section class="glass welcomeCard">
+
+<h2>
+
+Hello 👋
+
+</h2>
+
+<p>
+
+I'm <strong>Mara AI</strong>.
+
+I'm here to help you understand everything about Marathon Digital Hub.
+
+You can ask me anything about deposits, withdrawals, mining machines, referrals, income, wallet, account security and much more.
+
+</p>
+
+</section>
+
+<!--=========================================
+CHAT AREA
+==========================================-->
+
+<section
+id="chatContainer"
+class="chatContainer">
+
+<div class="aiMessage">
+
+<div class="aiAvatar">
+
+🤖
+
+</div>
+
+<div class="bubble">
+
+Hello 👋
+
+How can I help you today?
+
+</div>
+
+</div>
+
+</section>
+
+ <!--=========================================
+QUICK QUESTIONS
+==========================================-->
+
+<section class="glass quickQuestions">
+
+<div class="sectionTitle">
+
+<h2>
+
+⚡ Quick Questions
+
+</h2>
+
+<p>
+
+Tap any topic below to chat with Mara AI instantly.
+
+</p>
+
+</div>
+
+<div class="questionGrid">
+
+<button
+class="questionCard"
+data-question="How do I deposit money?">
+
+💳
+
+<span>
+
+Deposit Help
+
+</span>
+
+</button>
+
+<button
+class="questionCard"
+data-question="How do I withdraw money?">
+
+💸
+
+<span>
+
+Withdrawal Help
+
+</span>
+
+</button>
+
+<button
+class="questionCard"
+data-question="How do mining machines work?">
+
+⚙️
+
+<span>
+
+Mining Machines
+
+</span>
+
+</button>
+
+<button
+class="questionCard"
+data-question="How do I earn daily income?">
+
+📈
+
+<span>
+
+Daily Earnings
+
+</span>
+
+</button>
+
+<button
+class="questionCard"
+data-question="Explain the referral system.">
+
+👥
+
+<span>
+
+Referrals
+
+</span>
+
+</button>
+
+<button
+class="questionCard"
+data-question="How can I secure my account?">
+
+🔒
+
+<span>
+
+Account Security
+
+</span>
+
+</button>
+
+<button
+class="questionCard"
+data-question="How do VIP machines work?">
+
+👑
+
+<span>
+
+VIP Machines
+
+</span>
+
+</button>
+
+<button
+class="questionCard"
+data-question="How do I contact support?">
+
+📞
+
+<span>
+
+Support
+
+</span>
+
+</button>
+
+</div>
+
+</section>
+
+<!--=========================================
+LEARNING CENTER
+==========================================-->
+
+<section class="glass learningCenter">
+
+<div class="sectionTitle">
+
+<h2>
+
+📚 Learning Center
+
+</h2>
+
+</div>
+
+<div class="learningCard">
+
+<div class="learningIcon">
+
+🚀
+
+</div>
+
+<div>
+
+<h3>
+
+Beginner Guide
+
+</h3>
+
+<p>
+
+Learn how Marathon Digital Hub works from the beginning.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="learningCard">
+
+<div class="learningIcon">
+
+💳
+
+</div>
+
+<div>
+
+<h3>
+
+Deposit Guide
+
+</h3>
+
+<p>
+
+Step-by-step guide for MTN and Airtel deposits.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="learningCard">
+
+<div class="learningIcon">
+
+💸
+
+</div>
+
+<div>
+
+<h3>
+
+Withdrawal Guide
+
+</h3>
+
+<p>
+
+Understand fees, approval time and payout process.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="learningCard">
+
+<div class="learningIcon">
+
+⚙️
+
+</div>
+
+<div>
+
+<h3>
+
+Mining Guide
+
+</h3>
+
+<p>
+
+Learn how mining machines generate daily income.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="learningCard">
+
+<div class="learningIcon">
+
+👥
+
+</div>
+
+<div>
+
+<h3>
+
+Referral Guide
+
+</h3>
+
+<p>
+
+Discover how to grow your team and earn referral bonuses.
+
+</p>
+
+</div>
+
+  </div>
+
+  <!--=========================================
+CHAT INPUT
+==========================================-->
+
+<section class="chatInputArea glass">
+
+<div class="inputContainer">
+
+<button
+id="emojiBtn"
+class="iconButton">
+
+😊
+
+</button>
+
+<input
+type="text"
+id="userMessage"
+placeholder="Ask Mara AI anything...">
+
+<button
+id="voiceBtn"
+class="iconButton">
+
+🎤
+
+</button>
+
+<button
+id="sendMessage"
+class="sendButton">
+
+<span class="material-symbols-rounded">
+
+send
+
+</span>
+
+</button>
+
+</div>
+
+<div id="typingIndicator" class="typingIndicator" style="display:none;">
+
+🤖 Mara AI is typing...
+
+<div class="typingDots">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+POPULAR QUESTIONS
+==========================================-->
+
+<section class="glass popularSection">
+
+<h3>
+
+🔥 Popular Today
+
+</h3>
+
+<div class="popularList">
+
+<div class="popularItem">
+
+How long do withdrawals take?
+
+</div>
+
+<div class="popularItem">
+
+How do VIP machines work?
+
+</div>
+
+<div class="popularItem">
+
+How do referrals earn commissions?
+
+</div>
+
+<div class="popularItem">
+
+Why is my deposit pending?
+
+</div>
+
+<div class="popularItem">
+
+How do I increase my daily earnings?
+
+</div>
+
+</div>
+
+</section>
+
+<!--=========================================
+MARA AI FOOTER
+==========================================-->
+
+<section class="glass aiFooter">
+
+<div class="footerIcon">
+
+🧠
+
+</div>
+
+<div>
+
+<h3>
+
+Powered by Marathon Intelligence
+
+</h3>
+
+<p>
+
+Mara AI provides guidance about Marathon Digital Hub features, deposits, withdrawals, mining, referrals and account usage.
+
+</p>
+
+</div>
+
+</section>
+
+<!--=========================================
+BOTTOM NAVIGATION
+==========================================-->
+
+<nav class="bottomNav">
+
+<a href="dashboard.html">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<small>Home</small>
+
+</a>
+
+<a href="machines.html">
+
+<span class="material-symbols-rounded">
+
+memory
+
+</span>
+
+<small>Machines</small>
+
+</a>
+
+<a href="deposit.html">
+
+<span class="material-symbols-rounded">
+
+account_balance_wallet
+
+</span>
+
+<small>Deposit</small>
+
+</a>
+
+<a href="withdraw.html">
+
+<span class="material-symbols-rounded">
+
+payments
+
+</span>
+
+<small>Withdraw</small>
+
+</a>
+
+<a
+href="mara-ai.html"
+class="active">
+
+<span class="material-symbols-rounded">
+
+smart_toy
+
+</span>
+
+<small>Mara AI</small>
+
+</a>
+
+</nav>
+
+</div>
+
+<script src="assets/js/mining-engine.js"></script>
+<script src="mara-ai.js"></script>
+
+</body>
+  </html>
