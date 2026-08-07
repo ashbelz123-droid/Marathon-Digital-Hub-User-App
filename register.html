@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta
+name="theme-color"
+content="#07162B">
+
+<title>Create Account | Marathon Digital Hub</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+</head>
+
+<body id="registerPage">
+
+<!-- Animated Background -->
+
+<canvas id="networkCanvas"></canvas>
+
+<div id="particles"></div>
+
+<!-- Main Container -->
+
+<div class="authContainer">
+
+<!-- Logo -->
+
+<div class="authLogo">
+
+<img
+src="assets/images/logo.png"
+alt="Marathon Digital Hub">
+
+<h1>MARATHON</h1>
+
+<p>Digital Hub</p>
+
+</div>
+
+<!-- Heading -->
+
+<div class="authHeading">
+
+<h2>
+
+Create Account
+
+</h2>
+
+<p>
+
+Start your crypto mining journey with Marathon Digital Hub.
+
+</p>
+
+</div>
+
+<!-- Message Box -->
+
+<div id="messageBox"></div>
+
+<!-- Registration Form -->
+
+<form id="registerForm">
+
+  <!--=========================================
+FULL NAME
+==========================================-->
+
+<div class="inputGroup">
+
+    <label>
+
+        Full Name
+
+    </label>
+
+    <div class="inputBox">
+
+        <span class="material-symbols-rounded">
+
+            badge
+
+        </span>
+
+        <input
+        type="text"
+        id="fullname"
+        placeholder="Enter your full name"
+        autocomplete="name"
+        required>
+
+    </div>
+
+</div>
+
+<!--=========================================
+PHONE NUMBER
+==========================================-->
+
+<div class="inputGroup">
+
+    <label>
+
+        Phone Number
+
+    </label>
+
+    <div class="inputBox">
+
+        <span class="material-symbols-rounded">
+
+            call
+
+        </span>
+
+        <input
+        type="tel"
+        id="phone"
+        placeholder="+256700000000"
+        autocomplete="tel"
+        required>
+
+    </div>
+
+</div>
+
+<!--=========================================
+EMAIL ADDRESS
+==========================================-->
+
+<div class="inputGroup">
+
+    <label>
+
+        Email Address
+
+    </label>
+
+    <div class="inputBox">
+
+        <span class="material-symbols-rounded">
+
+            mail
+
+        </span>
+
+        <input
+        type="email"
+        id="email"
+        placeholder="example@email.com"
+        autocomplete="email"
+        required>
+
+    </div>
+
+</div>
+
+<!--=========================================
+REFERRAL CODE
+==========================================-->
+
+<div class="inputGroup">
+
+    <label>
+
+        Referral Code
+
+    </label>
+
+    <div class="inputBox">
+
+        <span class="material-symbols-rounded">
+
+            group_add
+
+        </span>
+
+        <input
+        type="text"
+        id="referral"
+        placeholder="Enter referral code"
+        autocomplete="off"
+        required>
+
+    </div>
+
+    <small class="inputHint">
+
+        A valid Marathon Digital Hub referral code is required to register.
+
+    </small>
+
+  </div>
+
+  <!--=========================================
+PASSWORD
+==========================================-->
+
+<div class="inputGroup">
+
+    <label>
+
+        Password
+
+    </label>
+
+    <div class="inputBox passwordBox">
+
+        <span class="material-symbols-rounded">
+
+            lock
+
+        </span>
+
+        <input
+        type="password"
+        id="password"
+        placeholder="Create a strong password"
+        autocomplete="new-password"
+        required>
+
+        <button
+        type="button"
+        id="togglePassword"
+        class="passwordToggle">
+
+            <span
+            class="material-symbols-rounded">
+
+                visibility
+
+            </span>
+
+        </button>
+
+    </div>
+
+    <div class="strengthContainer">
+
+        <div class="strengthTrack">
+
+            <div id="strengthBar"></div>
+
+        </div>
+
+        <small id="strengthText">
+
+            Password Strength
+
+        </small>
+
+    </div>
+
+</div>
+
+<!--=========================================
+CONFIRM PASSWORD
+==========================================-->
+
+<div class="inputGroup">
+
+    <label>
+
+        Confirm Password
+
+    </label>
+
+    <div class="inputBox passwordBox">
+
+        <span class="material-symbols-rounded">
+
+            verified_user
+
+        </span>
+
+        <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm your password"
+        autocomplete="new-password"
+        required>
+
+        <button
+        type="button"
+        id="toggleConfirmPassword"
+        class="passwordToggle">
+
+            <span
+            class="material-symbols-rounded">
+
+                visibility
+
+            </span>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!--=========================================
+PASSWORD REQUIREMENTS
+==========================================-->
+
+<div class="passwordRequirements">
+
+    <h4>
+
+        Password Requirements
+
+    </h4>
+
+    <div class="requirement" id="ruleLength">
+
+        <span>❌</span>
+
+        At least 8 characters
+
+    </div>
+
+    <div class="requirement" id="ruleUpper">
+
+        <span>❌</span>
+
+        One uppercase letter
+
+    </div>
+
+    <div class="requirement" id="ruleLower">
+
+        <span>❌</span>
+
+        One lowercase letter
+
+    </div>
+
+    <div class="requirement" id="ruleNumber">
+
+        <span>❌</span>
+
+        One number
+
+    </div>
+
+    <div class="requirement" id="ruleSpecial">
+
+        <span>❌</span>
+
+        One special character
+
+    </div>
+
+  </div>
+
+  <!--=========================================
+TERMS & CONDITIONS
+==========================================-->
+
+<div class="termsCard">
+
+    <label class="checkboxContainer">
+
+        <input
+        type="checkbox"
+        id="agreeTerms"
+        required>
+
+        <span class="checkmark"></span>
+
+        <span class="termsText">
+
+            I agree to the
+
+            <a href="terms.html">
+
+                Terms & Conditions
+
+            </a>
+
+            and
+
+            <a href="privacy.html">
+
+                Privacy Policy
+
+            </a>
+
+        </span>
+
+    </label>
+
+</div>
+
+<!--=========================================
+CREATE ACCOUNT BUTTON
+==========================================-->
+
+<button
+type="submit"
+id="registerBtn"
+class="primaryButton">
+
+    <span class="material-symbols-rounded">
+
+        person_add
+
+    </span>
+
+    Create Account
+
+</button>
+
+<!--=========================================
+MARA AI CARD
+==========================================-->
+
+<div
+class="maraAiCard"
+onclick="location.href='mara-ai.html'">
+
+    <div class="maraLeft">
+
+        <div class="maraIcon">
+
+            <span class="material-symbols-rounded">
+
+                smart_toy
+
+            </span>
+
+        </div>
+
+        <div>
+
+            <h3>
+
+                Need Help?
+
+            </h3>
+
+            <p>
+
+                Ask Mara AI about registration, referral codes or account setup.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <span class="material-symbols-rounded">
+
+        arrow_forward_ios
+
+    </span>
+
+</div>
+
+<!--=========================================
+LOGIN LINK
+==========================================-->
+
+<div class="switchAuth">
+
+    <p>
+
+        Already have an account?
+
+        <a href="login.html">
+
+            Sign In
+
+        </a>
+
+    </p>
+
+</div>
+
+<!--=========================================
+SECURITY NOTICE
+==========================================-->
+
+<div class="securityCard">
+
+    <div class="securityItem">
+
+        🛡️ 256-bit encrypted account protection
+
+    </div>
+
+    <div class="securityItem">
+
+        🔐 Your personal information is securely stored
+
+    </div>
+
+    <div class="securityItem">
+
+        🤝 Registration requires a valid referral code
+
+    </div>
+
+</div>
+
+</form>
+
+  <!--=========================================
+LOADING SCREEN
+==========================================-->
+
+<div
+id="loadingScreen"
+class="loadingScreen">
+
+    <div class="loadingCard">
+
+        <div class="loaderRing"></div>
+
+        <div class="loaderCore">
+
+            <span class="material-symbols-rounded">
+
+                smart_toy
+
+            </span>
+
+        </div>
+
+        <h3>
+
+            Creating Your Account...
+
+        </h3>
+
+        <p>
+
+            Please wait while we securely create your Marathon Digital Hub account.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!--=========================================
+APP VERSION
+==========================================-->
+
+<div class="appVersion">
+
+    Marathon Digital Hub
+
+    <span>
+
+        v1.0
+
+    </span>
+
+</div>
+
+</div>
+
+<!--=========================================
+JAVASCRIPT
+==========================================-->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
