@@ -11,26 +11,22 @@ content="width=device-width,initial-scale=1.0">
 
 <title>Profile | Marathon Digital Hub</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
 rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase-config.js"></script>
-
-<link rel="stylesheet"
-href="profile.css">
+<link rel="stylesheet" href="profile.css">
 
 </head>
 
 <body>
 
 <!--=========================================
-BACKGROUND
+PREMIUM BACKGROUND
 ==========================================-->
 
 <div class="backgroundGlow"></div>
@@ -47,37 +43,45 @@ HEADER
 
 <header class="topHeader glass">
 
-<a
-href="dashboard.html"
-class="backButton">
-
-<span class="material-symbols-rounded">
-
-arrow_back_ios_new
-
-</span>
-
-</a>
-
-<div class="headerTitle">
+<div class="headerLeft">
 
 <h2>
 
-My Profile
+Profile
 
 </h2>
 
 <p>
 
-Marathon Digital Hub
+Manage your Marathon Digital Hub account
 
 </p>
 
 </div>
 
+<div class="headerRight">
+
+<a
+href="notifications.html"
+class="iconButton">
+
+<span class="material-symbols-rounded">
+
+notifications
+
+</span>
+
+<span id="notifyCount">
+
+0
+
+</span>
+
+</a>
+
 <a
 href="settings.html"
-class="settingsButton">
+class="iconButton">
 
 <span class="material-symbols-rounded">
 
@@ -87,6 +91,8 @@ settings
 
 </a>
 
+</div>
+
 </header>
 
 <!--=========================================
@@ -95,15 +101,14 @@ PROFILE CARD
 
 <section class="glass profileCard">
 
-<div class="profileImageBox">
+<div class="profileImageArea">
 
 <img
-id="profileImage"
+id="avatar"
 src="images/default-avatar.png"
 alt="Profile">
 
-<button
-id="changePhoto">
+<button id="changePhoto">
 
 <span class="material-symbols-rounded">
 
@@ -116,6 +121,7 @@ photo_camera
 <input
 type="file"
 id="photoInput"
+accept="image/*"
 hidden>
 
 </div>
@@ -126,25 +132,35 @@ Loading...
 
 </h2>
 
-<p id="username">
+<p id="email">
 
-@loading
+Loading...
 
 </p>
 
-<div class="badges">
+<div class="badgeRow">
 
-<span class="memberBadge">
+<span
+class="badge membership"
+id="membership">
 
-⭐ Member
+Standard
 
 </span>
 
 <span
-id="accountStatus"
-class="statusBadge">
+class="badge kyc"
+id="kycStatus">
 
-🟢 Active
+Not Verified
+
+</span>
+
+<span
+class="badge status"
+id="accountStatus">
+
+Active
 
 </span>
 
@@ -153,18 +169,46 @@ class="statusBadge">
 </section>
 
 <!--=========================================
-ACCOUNT OVERVIEW
+ACCOUNT ALERT
+Hidden when Active
 ==========================================-->
 
-<section class="glass overviewCard">
+<section
+id="accountAlert"
+class="glass alertCard"
+style="display:none;">
 
-<div class="overviewItem">
+<div id="alertIcon">
 
-<h3 id="walletBalance">
+🟡
 
-UGX 0
+</div>
+
+<div>
+
+<h3 id="alertTitle">
+
+Account Status
 
 </h3>
+
+<p id="alertMessage">
+
+Account message...
+
+</p>
+
+</div>
+
+</section>
+
+<!--=========================================
+WALLET
+==========================================-->
+
+<section class="glass walletCard">
+
+<div>
 
 <p>
 
@@ -172,15 +216,41 @@ Wallet Balance
 
 </p>
 
+<h1 id="walletBalance">
+
+UGX 0
+
+</h1>
+
 </div>
 
-<div class="overviewItem">
+<div class="walletIcon">
 
-<h3 id="activeMachines">
+💰
+
+</div>
+
+</section>
+
+  <!--=========================================
+ACCOUNT STATISTICS
+==========================================-->
+
+<section class="statsGrid">
+
+<div class="glass statCard">
+
+<div class="statIcon">
+
+⚙️
+
+</div>
+
+<h2 id="activeMachines">
 
 0
 
-</h3>
+</h2>
 
 <p>
 
@@ -190,13 +260,19 @@ Active Machines
 
 </div>
 
-<div class="overviewItem">
+<div class="glass statCard">
 
-<h3 id="teamMembers">
+<div class="statIcon">
+
+👥
+
+</div>
+
+<h2 id="teamMembers">
 
 0
 
-</h3>
+</h2>
 
 <p>
 
@@ -206,17 +282,45 @@ Team Members
 
 </div>
 
-<div class="overviewItem">
+<div class="glass statCard">
 
-<h3 id="referralIncome">
+<div class="statIcon">
+
+🎁
+
+</div>
+
+<h2 id="referralBonus">
 
 UGX 0
 
-</h3>
+</h2>
 
 <p>
 
-Referral Earnings
+Referral Bonus
+
+</p>
+
+</div>
+
+<div class="glass statCard">
+
+<div class="statIcon">
+
+🔔
+
+</div>
+
+<h2 id="notificationCount">
+
+0
+
+</h2>
+
+<p>
+
+Notifications
 
 </p>
 
@@ -224,25 +328,29 @@ Referral Earnings
 
 </section>
 
-  <!--=========================================
-REFERRAL CARD
+<!--=========================================
+REFERRAL CENTRE
 ==========================================-->
 
 <section class="glass referralCard">
 
-<h3>
+<div class="sectionHeader">
 
-Referral Center
+<h2>
 
-</h3>
+Referral Centre
 
-<p>
+</h2>
 
-Invite friends and earn referral commissions.
+</div>
 
-</p>
+<label>
 
-<div class="referralBox">
+Referral Code
+
+</label>
+
+<div class="copyBox">
 
 <input
 type="text"
@@ -257,19 +365,34 @@ Copy
 
 </div>
 
-<button
-class="shareReferralButton"
-onclick="location.href='referral.html'">
+<label>
 
-<span class="material-symbols-rounded">
+Referral Link
 
-group_add
+</label>
 
-</span>
+<div class="copyBox">
 
-Open Referral Center
+<input
+type="text"
+id="referralLink"
+readonly>
+
+<button id="shareReferral">
+
+Share
 
 </button>
+
+</div>
+
+<a
+href="referral.html"
+class="openReferral">
+
+👥 Open Referral Centre
+
+</a>
 
 </section>
 
@@ -287,7 +410,7 @@ onclick="location.href='mara-ai.html?topic=profile'">
 
 </div>
 
-<div>
+<div class="maraInfo">
 
 <h3>
 
@@ -297,7 +420,7 @@ Ask Mara AI
 
 <p>
 
-Need help with your account, wallet, referrals or profile?
+Need help with your profile, referrals, wallet or account?
 
 </p>
 
@@ -312,100 +435,60 @@ arrow_forward_ios
 </section>
 
 <!--=========================================
-ABOUT MDH
+ABOUT MARATHON DIGITAL HUB
 ==========================================-->
 
-<section class="glass menuCard">
+<section class="glass infoMenu">
 
-<a href="about.html" class="menuItem">
+<a href="about.html" class="menuRow">
 
-<div class="menuLeft">
+<div>
 
-<span class="material-symbols-rounded">
-
-apartment
-
-</span>
-
-About Marathon Digital Hub
+🏢 About Marathon Digital Hub
 
 </div>
 
-<span class="material-symbols-rounded">
-
-chevron_right
-
-</span>
+<span>›</span>
 
 </a>
 
-<a href="faq.html" class="menuItem">
+<a href="faq.html" class="menuRow">
 
-<div class="menuLeft">
+<div>
 
-<span class="material-symbols-rounded">
-
-help
-
-</span>
-
-Frequently Asked Questions
+❓ Frequently Asked Questions
 
 </div>
 
-<span class="material-symbols-rounded">
-
-chevron_right
-
-</span>
+<span>›</span>
 
 </a>
 
-<a href="terms.html" class="menuItem">
+<a href="terms.html" class="menuRow">
 
-<div class="menuLeft">
+<div>
 
-<span class="material-symbols-rounded">
-
-gavel
-
-</span>
-
-Terms & Conditions
+📜 Terms & Conditions
 
 </div>
 
-<span class="material-symbols-rounded">
-
-chevron_right
-
-</span>
+<span>›</span>
 
 </a>
 
-<a href="privacy.html" class="menuItem">
+<a href="privacy.html" class="menuRow">
 
-<div class="menuLeft">
+<div>
 
-<span class="material-symbols-rounded">
-
-shield_lock
-
-</span>
-
-Privacy Policy
+🔒 Privacy Policy
 
 </div>
 
-<span class="material-symbols-rounded">
-
-chevron_right
-
-</span>
+<span>›</span>
 
 </a>
 
-</section>
+  </section>
 
 <!--=========================================
 ACCOUNT INFORMATION
@@ -413,19 +496,19 @@ ACCOUNT INFORMATION
 
 <section class="glass accountCard">
 
-<h3>
+<div class="sectionHeader">
+
+<h2>
 
 Account Information
 
-</h3>
+</h2>
+
+</div>
 
 <div class="infoRow">
 
-<span>
-
-Email
-
-</span>
+<span>Email</span>
 
 <strong id="userEmail">
 
@@ -437,11 +520,7 @@ Loading...
 
 <div class="infoRow">
 
-<span>
-
-Phone Number
-
-</span>
+<span>Phone Number</span>
 
 <strong id="userPhone">
 
@@ -453,11 +532,7 @@ Loading...
 
 <div class="infoRow">
 
-<span>
-
-Member Since
-
-</span>
+<span>Member Since</span>
 
 <strong id="joinDate">
 
@@ -469,11 +544,7 @@ Loading...
 
 <div class="infoRow">
 
-<span>
-
-Account ID
-
-</span>
+<span>Account ID</span>
 
 <strong id="userId">
 
@@ -483,9 +554,39 @@ Loading...
 
 </div>
 
-  </section>
+</section>
 
-  <!--=========================================
+<!--=========================================
+APP VERSION
+==========================================-->
+
+<section class="glass versionCard">
+
+<div class="versionIcon">
+
+🚀
+
+</div>
+
+<div>
+
+<h3>
+
+Marathon Digital Hub
+
+</h3>
+
+<p>
+
+Version 1.0.0
+
+</p>
+
+</div>
+
+</section>
+
+<!--=========================================
 LOADING SCREEN
 ==========================================-->
 
@@ -609,4 +710,4 @@ SCRIPTS
 
 </body>
 
-  </html>
+  </html>  
